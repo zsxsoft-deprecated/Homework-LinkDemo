@@ -6,8 +6,8 @@
 #ifndef LINK_DATE_H_
 #define LINK_DATE_H_
 
-
 #include <iostream>
+
 namespace link {
 class Date {
  public:

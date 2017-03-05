@@ -2,13 +2,19 @@
 // Copyright 2017 zsx<zsx@zsxsoft.com>
 // Created by sx on 2/28/2017.
 //
+#include "date.h"
 
 #include <cmath>
-#include "date.h"
+
 namespace link {
 
 int days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+/**
+ * Compatible with STL stream
+ * @param os
+ * @param obj
+ * @return
+ */
 std::ostream &operator<<(std::ostream &os, const Date &obj) {
   os << obj.year << "-" << obj.month << "-" << obj.day;
   return os;
@@ -23,10 +29,10 @@ Date::Date(int m_year, int m_month, int m_day) {
   day = m_day;
 }
 
-int Date::IsLeapYear() const {
-  return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
-}
-
+/**
+ * Return if a number is a prime number
+ * @return
+ */
 bool IsPrime(int number) {
   if (number == 1 || number == 0 || number % 2 == 0) return false;
   int i;
@@ -37,10 +43,26 @@ bool IsPrime(int number) {
   return (i > sqrted);
 }
 
+/**
+ * Return is or is not the leap year
+ * @return
+ */
+int Date::IsLeapYear() const {
+  return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+}
+
+/**
+ * Return y/m/d are all or not y/m/d prime number
+ * @return
+ */
 bool Date::IsAllPrime() const {
   return IsPrime(year) && IsPrime(month) && IsPrime(day);
 }
 
+/**
+ * Return the date is or is not valid
+ * @return
+ */
 bool Date::IsValid() const {
   int max_day = days[month];
   if (month == 2 && IsLeapYear()) max_day++;
@@ -50,6 +72,10 @@ bool Date::IsValid() const {
   return day <= max_day;
 }
 
+/**
+ * Return days from the first day of the year
+ * @return
+ */
 int Date::DaysFromFirstDayOfYear() const {
   int ret = 0;
   for (int i = 1; i < month; i++) {
@@ -60,15 +86,16 @@ int Date::DaysFromFirstDayOfYear() const {
   return ret;
 }
 
+
 int Date::operator-(const Date &c) const {
   int ret = 0;
-  if (!IsValid()) throw "Fuck Off";
+  if (!IsValid()) throw "Invalid date";
   if (*this == c) return 0;
   if (c.year > year ||
       (c.year == year && c.month > month) ||
       (c.year == year && c.month == month && c.day > day)
       ) {
-    return - (c - *this);
+    return -(c - *this);
   }
   for (int i = c.year; i < year; i++) {
     if (i == c.year) {

@@ -4,8 +4,10 @@
 //
 
 #include <iostream>
-#include "src/link/menu.h"
+
 #include "src/link/io.h"
+#include "src/link/menu.h"
+
 using link::Menu;
 using link::IO;
 
