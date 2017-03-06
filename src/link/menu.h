@@ -11,23 +11,26 @@
 
 namespace link {
 
+typedef std::function<void(void)> TMenuFunction;
 typedef struct MenuData {
   char input_key;
   std::string input_string;
-  void (*function_pointer)(void);
+  TMenuFunction function_pointer;
 } MenuData;
 
 class Menu {
  public:
   Menu();
-  static void Append(char, std::string, void (*function_pointer)(void));
-  static void Print(void);
-  static void Read(void);
-  static void Hello(void);
+  static std::shared_ptr<Menu> GetInstance();
+  void Append(char, std::string, TMenuFunction);
+  void Print(void);
+  void Read(void);
+  void Hello(void);
 
  private:
-  static std::shared_ptr<std::vector<MenuData>> menus;
-  static void PrintCurrentTime();
+  static std::shared_ptr<Menu> Instance;
+  std::shared_ptr<std::vector<MenuData>> menus;
+  void PrintCurrentTime();
 };
 }  // namespace link
 #endif  // LINK_MENU_H_

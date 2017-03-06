@@ -8,7 +8,24 @@
 
 namespace link {
 
-std::shared_ptr<std::vector<MenuData>> Menu::menus;
+/**
+ * Singleton Design Pattern
+ * Menu Instance
+ */
+std::shared_ptr<Menu> Menu::Instance = NULL;
+
+/**
+ * Get instance of Menu
+ * If not exists, create it.
+ * @return instance
+ */
+std::shared_ptr<Menu> Menu::GetInstance(void) {
+  if (Instance == NULL) {
+    Instance = std::make_shared<Menu>();
+  }
+  return Instance;
+}
+
 Menu::Menu() {
 }
 /**
@@ -18,7 +35,7 @@ Menu::Menu() {
  * @param function_pointer
  */
 void Menu::Append(
-    char input_key, std::string input_string, void (*function_pointer)(void)
+    char input_key, std::string input_string, TMenuFunction function_pointer
 ) {
   if (menus == NULL) menus = std::make_shared<std::vector<MenuData>>();
   auto temp = std::make_shared<MenuData>();

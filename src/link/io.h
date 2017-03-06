@@ -17,21 +17,24 @@
 namespace link {
 class IO {
  public:
-  static std::unique_ptr<List<std::shared_ptr<Date>>> LinkedList;
-  static void A(void);
-  static void C(void);
-  static void D(void);
-  static void F(void);
-  static void I(void);
-  static void O(void);
-  static void N(void);
-  static void P(void);
-  static void S(void);
-  static void T(void);
-  static void X(void);
-  static void CreateList(void);
+  std::unique_ptr<List<std::shared_ptr<Date>>> LinkedList;
+  static std::shared_ptr<IO> GetInstance();
+  void A(void);
+  void C(void);
+  void D(void);
+  void F(void);
+  void I(void);
+  void O(void);
+  void N(void);
+  void P(void);
+  void S(void);
+  void T(void);
+  void X(void);
+  IO(void);
+  ~IO(void);
  private:
-  static void CreateNodes(const int number);
+  static std::shared_ptr<IO> Instance;
+  void CreateNodes(const int number);
 };
 }  // namespace link
 #endif  // LINK_IO_H_

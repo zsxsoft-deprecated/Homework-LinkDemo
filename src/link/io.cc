@@ -17,10 +17,32 @@
 
 namespace link {
 
-std::unique_ptr<List<std::shared_ptr<Date>>> IO::LinkedList;
-void IO::CreateList(void) {
+/**
+ * Singleton Design Pattern
+ * Menu Instance
+ */
+std::shared_ptr<IO> IO::Instance = NULL;
+
+/**
+ * Get instance of IO
+ * If not exists, create it.
+ * @return instance
+ */
+std::shared_ptr<IO> IO::GetInstance(void) {
+  if (Instance == NULL) {
+    Instance = std::make_shared<IO>();
+  }
+  return Instance;
+}
+
+IO::IO(void) {
   LinkedList = std::make_unique<List<std::shared_ptr<Date>>>();
 }
+
+IO::~IO(void) {
+  LinkedList.release();
+}
+
 
 /**
  * Create nodes
@@ -44,7 +66,6 @@ void IO::C(void) {
   using std::cout;
   using std::endl;
 
-  if (LinkedList == NULL) CreateList();
   CreateNodes(2000);
   cout << "创建成功" << endl;
 }
@@ -58,7 +79,6 @@ void IO::O(void) {
   using std::endl;
   using std::setw;
 
-  if (LinkedList == NULL) CreateList();
   int n;
   cout << "输出到第x项：";
   cin >> n;
@@ -81,7 +101,6 @@ void IO::D(void) {
   using std::cout;
   using std::endl;
 
-  if (LinkedList == NULL) CreateList();
   LinkedList->pop_front();
   auto last = LinkedList->begin();
   IT {
@@ -103,7 +122,6 @@ void IO::N(void) {
   using std::endl;
   using std::setw;
 
-  if (LinkedList == NULL) CreateList();
   int n = 0;
   IT {
     if ((*(it->data.get())).IsValid()) continue;
@@ -122,7 +140,6 @@ void IO::P(void) {
   using std::endl;
   using std::setw;
 
-  if (LinkedList == NULL) CreateList();
   int n = 0;
   IT {
     if (!(*(it->data.get())).IsValid()) continue;
@@ -142,7 +159,6 @@ void IO::T(void) {
   using std::endl;
   using std::setw;
 
-  if (LinkedList == NULL) CreateList();
   auto date = std::make_unique<Date>(1900, 1, 1);
   int n = 0;
   IT {
@@ -161,7 +177,6 @@ void IO::F(void) {
   using std::cout;
   using std::endl;
 
-  if (LinkedList == NULL) CreateList();
   LinkedList->reverse();
   cout << "翻转成功" << endl;
 }
@@ -170,7 +185,6 @@ void IO::F(void) {
  * Sort list
  */
 void IO::A(void) {
-  if (LinkedList == NULL) CreateList();
   std::vector<Date> data;
   IT {
     if ((*it->data.get()).IsValid()) {
@@ -196,7 +210,7 @@ void IO::A(void) {
 void IO::I(void) {
 #define DATE std::make_shared<Date>(\
     time_info->tm_year + 1900, time_info->tm_mon + 1, time_info->tm_mday)
-  if (LinkedList == NULL) CreateList();
+
   bool inserted_greater = false;
   bool inserted_less = false;
   auto time_info = new tm();
@@ -228,7 +242,6 @@ void IO::X(void) {
   using std::cout;
   using std::endl;
 
-  if (LinkedList == NULL) CreateList();
   std::string line;
   std::ifstream file("Link.dat");
   if (file.is_open()) {
@@ -245,7 +258,6 @@ void IO::X(void) {
 void IO::S(void) {
   using std::endl;
 
-  if (LinkedList == NULL) CreateList();
   int n = 0;
   std::ofstream file;
   file.open("Link.dat");
