@@ -29,7 +29,7 @@ class Menu {
 
  private:
   static std::shared_ptr<Menu> Instance;
-  std::shared_ptr<std::vector<MenuData>> menus;
+  std::vector<MenuData> menus;
   void PrintCurrentTime();
 };
 }  // namespace link

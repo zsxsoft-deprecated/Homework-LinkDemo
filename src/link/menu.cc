@@ -27,6 +27,7 @@ std::shared_ptr<Menu> Menu::GetInstance(void) {
 }
 
 Menu::Menu() {
+  menus = std::vector<MenuData>();
 }
 /**
  * Append to menu
@@ -37,12 +38,11 @@ Menu::Menu() {
 void Menu::Append(
     char input_key, std::string input_string, TMenuFunction function_pointer
 ) {
-  if (menus == NULL) menus = std::make_shared<std::vector<MenuData>>();
   auto temp = std::make_shared<MenuData>();
   temp->input_key = input_key;
   temp->input_string = input_string;
   temp->function_pointer = function_pointer;
-  (*menus).push_back(*temp);
+  menus.push_back(*temp);
 }
 
 /**
@@ -81,9 +81,8 @@ void Menu::Print(void) {
   using std::cout;
   using std::endl;
 
-  if (menus == NULL) menus = std::make_shared<std::vector<MenuData>>();
   cout << "****************************************" << endl;
-  for (auto menu : (*menus)) {
+  for (auto menu : menus) {
     cout << "*   " << menu.input_key;
     cout << "：    " << menu.input_string;
     cout << endl;
@@ -99,13 +98,12 @@ void Menu::Read(void) {
   using std::cout;
   using std::endl;
 
-  if (menus == NULL) menus = std::make_shared<std::vector<MenuData>>();
   char input_key;
   while (1) {
     int flag = false;
     Print();
     cout << "请选择：( ";
-    for (auto menu : (*menus)) {
+    for (auto menu : menus) {
       cout << menu.input_key << " ";
     }
     cout << ")：";
@@ -114,7 +112,7 @@ void Menu::Read(void) {
     if (input_key >= 'a') {  // convert lower case to upper case
       input_key -= ('a' - 'A');
     }
-    for (auto menu : (*menus)) {
+    for (auto menu : menus) {
       if (menu.input_key == input_key) {
         flag = true;
         menu.function_pointer();
