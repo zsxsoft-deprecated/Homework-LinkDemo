@@ -107,8 +107,7 @@ int Date::operator-(const Date &c) const {
   }
   for (int i = c.year; i < year; i++) {
     if (i == c.year) {
-      ret += c.DaysFromFirstDayOfYear();
-      continue;
+      ret -= c.DaysFromFirstDayOfYear();
     }
     ret += ((i % 4 == 0 && i % 100 != 0) || i % 400 == 0) ? 366 : 365;
   }
