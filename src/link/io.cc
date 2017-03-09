@@ -6,10 +6,15 @@
 #include "io.h"
 
 #include <algorithm>
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <functional>
 #include <fstream>
 #include <iomanip>
+#include <string>
 #include <vector>
-#include <cstring>
+
 /**
  * Macro for LinkedList iterator
  */
@@ -244,10 +249,18 @@ void IO::X(void) {
 
   std::string line;
   std::ifstream file("Link.dat");
+  int line_count = 0;
   if (file.is_open()) {
     while (getline(file, line)) {
       cout << line << endl;
+      if (line_count % 50 == 0) {
+        cout << endl << "请按任意键继续..." << endl;
+        std::cin.get();
+      }
+      line_count++;
     }
+  } else {
+    cout << "文件打开失败！请检查权限等。" << endl;
   }
   file.close();
 }
@@ -261,15 +274,19 @@ void IO::S(void) {
   int n = 0;
   std::ofstream file;
   file.open("Link.dat");
-  IT {
-    if (n % 5 == 0) {
-      if (n > 0) file << endl;
-      file << " " << (n / 5 + 1) << ": ";
-    }
-    file.width(10);
-    file << *(it->data.get());
-    n++;
-  };
+  if (file.is_open()) {
+    IT {
+      if (n % 5 == 0) {
+        if (n > 0) file << endl;
+        file << " " << (n / 5 + 1) << ": ";
+      }
+      file.width(10);
+      file << *(it->data.get());
+      n++;
+    };
+  } else {
+    std::cout << "文件打开失败！请检查权限等。" << endl;
+  }
   file.close();
 }
 
