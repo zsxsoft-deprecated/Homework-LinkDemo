@@ -89,7 +89,7 @@ int Date::DaysFromFirstDayOfYear() const {
 
 int Date::operator-(const Date &c) const {
   int ret = 0;
-  if (!IsValid()) throw "Invalid date";
+  // if (!IsValid()) throw "Invalid date";
   if (*this == c) return 0;
   if (c.year > year ||
       (c.year == year && c.month > month) ||

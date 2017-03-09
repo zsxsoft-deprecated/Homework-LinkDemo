@@ -4,6 +4,7 @@
 //
 #include "menu.h"
 
+#include <ctime>
 #include <iostream>
 
 namespace link {

@@ -5,6 +5,7 @@
 #ifndef LINK_MENU_H_
 #define LINK_MENU_H_
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
