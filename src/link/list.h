@@ -1,7 +1,10 @@
-//
-// Copyright 2017 zsx<zsx@zsxsoft.com>
-// Created by sx on 2/28/2017.
-//
+/*
+ * Copyright 2017 zsx<zsx@zsxsoft.com>
+ * Created by sx on 2/28/2017.
+ * WTFPL License
+ *
+ * The definition & implement of class Link
+ */
 
 #ifndef LINK_LIST_H_
 #define LINK_LIST_H_
@@ -12,13 +15,16 @@ namespace link {
 /**
  * A Class to implement Linked List
  * Tried to imitate STL, But not yet compatible with STL.
+ *
+ * Functions don't have any comments, because you can understand them at a glance.
  * @tparam T
  */
 template<class T>
 class List {
  public:
   struct Node {
-    explicit Node(const T data, std::shared_ptr<Node> next = 0) : data(data), next(next) {
+    explicit Node(const T data,
+                  std::shared_ptr<Node> next = 0) : data(data), next(next) {
     }
     T data;
     std::shared_ptr<Node> next;

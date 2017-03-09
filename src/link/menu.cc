@@ -1,11 +1,14 @@
-//
-// Copyright 2017 zsx<zsx@zsxsoft.com>
-// Created by sx on 2/28/2017.
-//
+/*
+ * Copyright 2017 zsx<zsx@zsxsoft.com>
+ * Created by sx on 2/28/2017.
+ * WTFPL License
+ *
+ * The implement of class Menu
+ */
 #include "menu.h"
 
-#include <ctime>
 #include <iostream>
+#include <ctime>
 
 namespace link {
 
@@ -62,9 +65,9 @@ void Menu::PrintCurrentTime() {
 
   auto *time_info = new tm;
   auto raw_time = time(NULL);
-  time_info = localtime_r(&raw_time, time_info);
+  localtime_s(time_info, &raw_time);
 
-  cout << "Created by zsx as his homework." << endl << endl;
+  cout << "zsx's fucking homework." << endl << endl;
   cout << "现在是：" << time_info->tm_year + 1900 << " 年 ";
   cout << time_info->tm_mon + 1 << " 月 ";
   cout << time_info->tm_mday << " 日 ";

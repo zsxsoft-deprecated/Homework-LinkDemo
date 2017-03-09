@@ -1,7 +1,10 @@
-//
-// Copyright 2017 zsx<zsx@zsxsoft.com>
-// Created by sx on 2/28/2017.
-//
+/*
+ * Copyright 2017 zsx<zsx@zsxsoft.com>
+ * Created by sx on 2/28/2017.
+ * WTFPL License
+ *
+ * The implement of class IO
+ */
 
 #include "io.h"
 
@@ -24,7 +27,7 @@ namespace link {
 
 /**
  * Singleton Design Pattern
- * Menu Instance
+ * IO Instance
  */
 std::shared_ptr<IO> IO::Instance = NULL;
 
@@ -50,7 +53,7 @@ IO::~IO(void) {
 
 
 /**
- * Create nodes
+ * Creates nodes
  * @param number number of nodes want to create
  */
 void IO::CreateNodes(const int number) {
@@ -65,7 +68,7 @@ void IO::CreateNodes(const int number) {
 }
 
 /**
- * Create 2000 nodes
+ * Creates 2000 nodes
  */
 void IO::C(void) {
   using std::cout;
@@ -76,7 +79,7 @@ void IO::C(void) {
 }
 
 /**
- * Print all nodes
+ * Prints all nodes
  */
 void IO::O(void) {
   using std::cin;
@@ -96,7 +99,7 @@ void IO::O(void) {
 }
 
 /**
- * Delete some nodes
+ * Deletes some nodes
  * Includes:
  *   - Invalid nodes
  *   - first node
@@ -120,7 +123,7 @@ void IO::D(void) {
 }
 
 /**
- * Print invalid nodes
+ * Prints invalid nodes
  */
 void IO::N(void) {
   using std::cout;
@@ -138,7 +141,7 @@ void IO::N(void) {
 }
 
 /**
- * Print if nodes's y/m/d are prime numbers
+ * Prints if nodes's y/m/d are prime numbers
  */
 void IO::P(void) {
   using std::cout;
@@ -157,7 +160,7 @@ void IO::P(void) {
 }
 
 /**
- * Print all nodes' distance to 1900-1-1
+ * Prints all nodes' distance to 1900-1-1
  */
 void IO::T(void) {
   using std::cout;
@@ -176,7 +179,7 @@ void IO::T(void) {
 }
 
 /**
- * Reverse list
+ * Reverses list
  */
 void IO::F(void) {
   using std::cout;
@@ -187,7 +190,7 @@ void IO::F(void) {
 }
 
 /**
- * Sort list
+ * Sorts list
  */
 void IO::A(void) {
   std::vector<Date> data;
@@ -205,7 +208,7 @@ void IO::A(void) {
 }
 
 /**
- * Insert current date as node to list
+ * Inserts current date as node to list
  * Insert to:
  *   - First node
  *   - Last node
@@ -238,10 +241,11 @@ void IO::I(void) {
     }
   };
   delete time_info;
+#undef DATE
 }
 
 /**
- * Read link.dat and output
+ * Reads link.dat and output
  */
 void IO::X(void) {
   using std::cout;
@@ -266,7 +270,7 @@ void IO::X(void) {
 }
 
 /**
- * Save Link in memory to Link.dat
+ * Saves Link in memory to Link.dat
  */
 void IO::S(void) {
   using std::endl;
@@ -289,5 +293,7 @@ void IO::S(void) {
   }
   file.close();
 }
+
+#undef IT
 
 }  // namespace link

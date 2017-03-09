@@ -1,7 +1,10 @@
-//
-// Copyright 2017 zsx<zsx@zsxsoft.com>
-// Created by sx on 2/28/2017.
-//
+/*
+ * Copyright 2017 zsx<zsx@zsxsoft.com>
+ * Created by sx on 2/28/2017.
+ * WTFPL License
+ *
+ * Just main entrance
+ */
 
 #include <iostream>
 

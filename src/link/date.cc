@@ -1,7 +1,11 @@
-//
-// Copyright 2017 zsx<zsx@zsxsoft.com>
-// Created by sx on 2/28/2017.
-//
+/*
+ * Copyright 2017 zsx<zsx@zsxsoft.com>
+ * Created by sx on 2/28/2017.
+ * WTFPL License
+ *
+ * The implement of class Date
+ */
+
 #include "date.h"
 
 #include <cmath>
@@ -44,7 +48,7 @@ bool IsPrime(int number) {
 }
 
 /**
- * Return is or is not the leap year
+ * Return true when this year is leap year
  * @return
  */
 int Date::IsLeapYear() const {
@@ -52,7 +56,7 @@ int Date::IsLeapYear() const {
 }
 
 /**
- * Return y/m/d are all or not y/m/d prime number
+ * Return true when y/m/d are all prime number
  * @return
  */
 bool Date::IsAllPrime() const {
@@ -60,7 +64,7 @@ bool Date::IsAllPrime() const {
 }
 
 /**
- * Return the date is or is not valid
+ * Return true when this date valid
  * @return
  */
 bool Date::IsValid() const {
@@ -86,7 +90,11 @@ int Date::DaysFromFirstDayOfYear() const {
   return ret;
 }
 
-
+/**
+ * Return the days between two dates with operator reloading
+ * @param c the other day
+ * @return
+ */
 int Date::operator-(const Date &c) const {
   int ret = 0;
   // if (!IsValid()) throw "Invalid date";
