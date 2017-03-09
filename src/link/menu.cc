@@ -50,14 +50,14 @@ void Menu::Append(
 }
 
 /**
- * Say hello
+ * Says hello
  */
 void Menu::Hello() {
   PrintCurrentTime();
 }
 
 /**
- * Print current time
+ * Prints current time
  */
 void Menu::PrintCurrentTime() {
   using std::cout;
@@ -65,7 +65,7 @@ void Menu::PrintCurrentTime() {
 
   auto *time_info = new tm;
   auto raw_time = time(NULL);
-  localtime_s(time_info, &raw_time);
+  time_info = localtime_r(&raw_time, time_info);
 
   cout << "zsx's fucking homework." << endl << endl;
   cout << "现在是：" << time_info->tm_year + 1900 << " 年 ";
@@ -79,7 +79,7 @@ void Menu::PrintCurrentTime() {
 }
 
 /**
- * Print menu items
+ * Prints menu items
  */
 void Menu::Print(void) {
   using std::cout;
@@ -95,7 +95,7 @@ void Menu::Print(void) {
 }
 
 /**
- * Print menu and read fron stdin
+ * Prints menu and read from stdin
  */
 void Menu::Read(void) {
   using std::cin;
